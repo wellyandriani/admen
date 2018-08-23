@@ -52,7 +52,7 @@ class CustomizedTable extends React.Component {
         this.getData()
      }
      getData(){
-         axios.get(`${link}`)
+         axios.get(`${process.env.REACT_APP_API_URL}/products/`)
          .then((response) => {
              console.log(response);
              this.setState({products: response.data})
@@ -69,13 +69,13 @@ render() {
     <CustomTableCell component="th" scope="row">
       {products.name}
     </CustomTableCell>
-<CustomTableCell>{products.brand}</CustomTableCell>
-<CustomTableCell>{products.description}</CustomTableCell>
-<CustomTableCell>{products.price}</CustomTableCell>
-<CustomTableCell>{products.idcategory}</CustomTableCell>
-<CustomTableCell>{products.idseller}</CustomTableCell>
-  </TableRow>
-  )
+    <CustomTableCell>{products.brand}</CustomTableCell>
+    <CustomTableCell>{products.description}</CustomTableCell>
+    <CustomTableCell>{products.price}</CustomTableCell>
+    <CustomTableCell>{products.idcategory}</CustomTableCell>
+    <CustomTableCell>{products.idseller}</CustomTableCell>
+      </TableRow>
+      )
 
   return (
     <Paper className={classes.root}>

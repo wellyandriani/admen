@@ -34,6 +34,24 @@ export const mailFolderListItems = (
       </ListItemIcon>
       <ListItemText primary="Add Category" />
     </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <SendIcon />
+      </ListItemIcon>
+      <ListItemText primary="List Kurir" />
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <SendIcon />
+      </ListItemIcon>
+      <ListItemText primary="Sliporder" />
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <SendIcon />
+      </ListItemIcon>
+      <ListItemText primary="Invoice" />
+    </ListItem>
   </div>
 );
 
