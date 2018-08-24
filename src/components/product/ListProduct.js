@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
+import {Link} from 'react-router-dom';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
@@ -10,6 +10,9 @@ import Paper from '@material-ui/core/Paper';
 import pink from '@material-ui/core/colors/pink';
 import deepOrange from '@material-ui/core/colors/deepOrange';
 import axios from 'axios'
+import { Button } from '@material-ui/core';
+
+import Delete from './Delete'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -46,11 +49,30 @@ class CustomizedTable extends React.Component {
         super()
         this.state = {
             products: [],
-        }
-    }
-    componentDidMount(){
-        this.getData()
+            showModule: '',
+            productsDeleted: {}
+         }
+ 
+         this.closeModal = this.closeModal.bind(this);
+         this.showDelete = this.showDelete.bind(this);
      }
+     componentDidMount(){
+         this.getData()
+      }
+ 
+     showDelete(products){
+       this.setState({
+         showModule: 'delete', 
+         modal: true,
+         productsDeleted: products
+       })
+     }
+     closeModal() {
+       this.setState({
+           showModule: '',
+           modal: false
+       });
+   }
      getData(){
          axios.get(`${process.env.REACT_APP_API_URL}/products/`)
          .then((response) => {
@@ -61,6 +83,8 @@ class CustomizedTable extends React.Component {
              console.log(err);
          })
      }
+
+
 render() {
   const { classes } = this.props;
   const products = this.state.products
@@ -74,6 +98,14 @@ render() {
     <CustomTableCell>{products.price}</CustomTableCell>
     <CustomTableCell>{products.idcategory}</CustomTableCell>
     <CustomTableCell>{products.idseller}</CustomTableCell>
+    <CustomTableCell>
+      <Button variant="contained" color="primary" button component={Link} to="/update" >Edit</Button>
+      <Button color="danger" 
+                onClick={() => {
+                    this.showDelete(products);
+                }}
+            >Delete</Button>
+    </CustomTableCell>
       </TableRow>
       )
 
@@ -88,10 +120,12 @@ render() {
             <CustomTableCell>Price</CustomTableCell>
             <CustomTableCell>Category</CustomTableCell>
             <CustomTableCell>Seller</CustomTableCell>
+            <CustomTableCell>Lakukan</CustomTableCell>
           </TableRow>
         </TableHead>
         {datas}
       </Table>
+      { (this.state.showModule === 'delete') && <Delete modal={this.state.modal} closeModal={this.closeModal} getData={this.getData} data={this.state.productsDeleted}/> }
     </Paper>
   );
 }

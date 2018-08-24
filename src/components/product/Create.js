@@ -8,84 +8,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from 'axios'
 
-// const seller = [
-//     {
-//         value: 1,
-//         label: 'mama otak2'
-//     }
-// ]
-
-// const categories = [
-//     {
-//       value: 1,
-//       label: 'makanan',
-//     },
-//     {
-//       value: '2',
-//       label: 'minuman',
-//     },
-//     {
-//       value: 3,
-//       label: 'oleh-oleh',
-//     },
-//     {
-//       value: 4,
-//       label: 'kerajinan',
-//     },
-//     {
-//         value: 5,
-//         label: 'perizinan',
-//       },
-//       {
-//         value: 6,
-//         label: 'jasa',
-//       },
-//       {
-//         value: 7,
-//         label: 'tiket',
-//       },
-//       {
-//         value: 8,
-//         label: 'tas',
-//       },
-//       {
-//         value: 9,
-//         label: 'aksesoris',
-//       },
-//       {
-//         value: 10,
-//         label: 'buah-buahan',
-//       },
-//       {
-//         value: 11,
-//         label: 'pakaian',
-//       },
-//       {
-//         value: 12,
-//         label: 'sepatu',
-//       },
-//       {
-//         value: 13,
-//         label: 'tanaman',
-//       },
-//       {
-//         value: 14,
-//         label: 'sayuran',
-//       },
-//       {
-//         value: 15,
-//         label: 'lauk pauk',
-//       },
-//       {
-//         value: 16,
-//         label: 'daging',
-//       },
-//       {
-//         value: 17,
-//         label: 'herbal',
-//       },
-//   ];
-
 const styles = theme => ({
   container: {
     display: 'flex',
@@ -168,7 +90,7 @@ class ComposedTextField extends React.Component {
             image : this.state.image
           };
         axios
-          .post("http://192.168.10.40:8080/products", {name : this.state.name,
+          .post(`${process.env.REACT_APP_API_URL}/products/`, {name : this.state.name,
           price : this.state.price, 
           // stock : this.state.stock, 
           brand : this.state.brand,
@@ -277,6 +199,8 @@ class ComposedTextField extends React.Component {
 
         <Button variant="contained" color="primary" type="submit" className={classes.button}>
             Add
+        </Button>
+        <Button style={{marginLeft: '8px'}}  variant="contained" color="primary" type="button" onClick={this.close} className={classes.button}> Cancel
         </Button>
         </form>
         

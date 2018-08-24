@@ -3,9 +3,10 @@ import Category from './pages/Category'
 import Login from './components/Login'
 import Product from './pages/Product'
 import ListProduct from './pages/ListProduct'
-import Listkurir from './pages/Listkurir'
-import Sliporder from './pages/PrintSliporder'
-import PrintInvoice from './pages/PrintInvoice';
+import Productupdate from './pages/ProductUpdate';
+import Sellers from './pages/ListSeller';
+import Selleradd from './pages/Seller'
+import Sellersupdate from './pages/SellerUpdate';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 class App extends Component {
@@ -13,13 +14,14 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/category" component={Category} />
           <Route  exact path="/login" component={Login} />
-          <Route  exact path="/form" component={Product} />
-          <Route  exact path="/list" component={ListProduct} />
-          <Route exact path="/kurir" component={Listkurir} />
-          <Route exact path="/sliporder" component={Sliporder} />
-          <Route exact path="/invoice" component={PrintInvoice} />
+          <Route  path="/addcategory" component={Category} />
+          <Route  path="/addproduct" component={Product} />
+          <Route  path="/listproduct" component={ListProduct} />
+          <Route path="/update" component={Productupdate} />
+          <Route path="/selleradd" component={Selleradd} />
+          <Route path="/sellers" component={Sellers} />
+          <Route path="/sellerupdate" component={Sellersupdate} />
         </Switch>
       </Router>
     );
