@@ -26,7 +26,7 @@ class Delete extends React.Component {
                 <Dialog  onClosed={this.handleClosed}>
                     <DialogTitle>Konfirmasi</DialogTitle>
                     <DialogContent>
-                    <DialogContentText>Apakah anda ingin menghapus seller  {this.props.data.username} ini?
+                    <DialogContentText>Apakah anda ingin menghapus kategpri  {this.props.data.name} ini?
                     </DialogContentText>
                     </DialogContent>
                     <DialogActions>

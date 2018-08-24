@@ -42,6 +42,8 @@ class ComposedTextField extends React.Component {
           };
           this.submitHandler = this.submitHandler.bind(this);
           this.handleChange = this.handleChange.bind(this);
+
+          this.handleClose = this.handleClose.bind(this);
       }
 
       handleChange = username => event => {
@@ -76,6 +78,13 @@ class ComposedTextField extends React.Component {
             this.setState({ sellers });
           });
       }
+
+      handleClose() {
+        this.setState({
+            showModule: '',
+            modal: false
+        });
+    }
       
 
 
@@ -121,7 +130,7 @@ class ComposedTextField extends React.Component {
         <Button variant="contained" color="primary" type="submit" className={classes.button}>
             Add
         </Button>
-        <Button style={{marginLeft: '8px'}}  variant="contained" color="primary" type="button" onClick={this.close} className={classes.button}> Cancel
+        <Button style={{marginLeft: '8px'}}  variant="contained" color="primary" type="button" onClick={this.handleClose} className={classes.button}> Cancel
         </Button>
         </form>
         

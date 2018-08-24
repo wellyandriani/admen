@@ -36,11 +36,11 @@ export const mailFolderListItems = (
   </ListItem>
  
    
-    <ListItem button component={Link} to="/addcategory">
+    <ListItem button component={Link} to="/listcategory">
       <ListItemIcon>
         <SendIcon />
       </ListItemIcon>
-      <ListItemText primary="Add Category" />
+      <ListItemText primary="Category" />
     </ListItem>
   </div>
 );

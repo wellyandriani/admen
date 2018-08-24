@@ -11,7 +11,7 @@ import pink from '@material-ui/core/colors/pink';
 import deepOrange from '@material-ui/core/colors/deepOrange';
 import axios from 'axios'
 
-import Delete from './delete';
+import Delete from './Delete';
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -47,9 +47,9 @@ class CustomizedTable extends React.Component {
     constructor(){
         super()
         this.state = {
-           sellers: [],
+           category: [],
            showModule: '',
-           sellersDeleted: {}
+           categoryDeleted: {}
         }
 
         this.closeModal = this.closeModal.bind(this);
@@ -59,11 +59,11 @@ class CustomizedTable extends React.Component {
         this.getData()
      }
 
-    showDelete(sellers){
+    showDelete(category){
       this.setState({
         showModule: 'delete', 
         modal: true,
-        sellersDeleted: sellers
+        categoryDeleted: category
       })
     }
     closeModal() {
@@ -73,10 +73,10 @@ class CustomizedTable extends React.Component {
       });
   }
      getData(){
-         axios.get(`${process.env.REACT_APP_API_URL}/sellers/`)
+         axios.get(`${process.env.REACT_APP_API_URL}/productcategory/`)
          .then((response) => {
              console.log(response);
-             this.setState({sellers: response.data})
+             this.setState({category: response.data})
          })
          .catch((err) => {
              console.log(err);
@@ -92,21 +92,16 @@ class CustomizedTable extends React.Component {
   
 render() {
   const { classes } = this.props;
-  const sellers = this.state.sellers
-  const datas =sellers.map(sellers => 
-  <TableRow className={classes.row} key={sellers.id}>
-    <CustomTableCell component="th" scope="row"> {sellers.username}
+  const category = this.state.category
+  const datas =category.map(category => 
+  <TableRow className={classes.row} key={category.id}>
+    <CustomTableCell component="th" scope="row"> {category.name}
     </CustomTableCell>
-    <CustomTableCell>{sellers.firstname}</CustomTableCell>
-    <CustomTableCell>{sellers.lastname}</CustomTableCell>
-    <CustomTableCell>{sellers.address}</CustomTableCell>
-    <CustomTableCell>{sellers.email}</CustomTableCell>
-    <CustomTableCell>{sellers.phone}</CustomTableCell>
     <CustomTableCell>
     <Button variant="contained" color="primary" button component={Link} to="/sellerupdate">Edit</Button>
     <Button color="danger" 
                 onClick={() => {
-                    this.showDelete(sellers);
+                    this.showDelete(category);
                 }}
             >Delete</Button>
     </CustomTableCell>
@@ -118,18 +113,13 @@ render() {
       <Table className={classes.table}>
         <TableHead color='primary'>
           <TableRow>
-            <CustomTableCell>UserName</CustomTableCell>
-            <CustomTableCell>Firstname</CustomTableCell>
-            <CustomTableCell>Lastname</CustomTableCell>
-            <CustomTableCell>Address</CustomTableCell>
-            <CustomTableCell>Email</CustomTableCell>
-            <CustomTableCell>Phone</CustomTableCell>
+            <CustomTableCell>Category Name</CustomTableCell>
             <CustomTableCell>Action</CustomTableCell>
           </TableRow>
         </TableHead>
         {datas}
       </Table>
-      { (this.state.showModule === 'delete') && <Delete modal={this.state.modal} closeModal={this.closeModal} getData={this.getData} data={this.state.sellersDeleted}/> }
+      { (this.state.showModule === 'delete') && <Delete modal={this.state.modal} closeModal={this.closeModal} getData={this.getData} data={this.state.categoryDeleted}/> }
     </Paper>
   );
 }

@@ -120,7 +120,7 @@ render() {
             <CustomTableCell>Price</CustomTableCell>
             <CustomTableCell>Category</CustomTableCell>
             <CustomTableCell>Seller</CustomTableCell>
-            <CustomTableCell>Lakukan</CustomTableCell>
+            <CustomTableCell>Action</CustomTableCell>
           </TableRow>
         </TableHead>
         {datas}
